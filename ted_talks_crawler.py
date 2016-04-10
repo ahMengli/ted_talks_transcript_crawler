@@ -72,12 +72,8 @@ if __name__ == '__main__':
     flag = False
     for topic_url in topic_list:
         print topic_url
-        if topic_url.find('9_trippy_ted_talks') <> -1:
-            flag = True
-        if not flag:
-            continue
         #topic_url = 'http://www.ted.com/playlists/10/who_are_the_hackers'
-        file_saved = '/Users/mmli/Downloads/speeches_of_ted.txt'
+        file_saved = '/transcript_of_ted.txt'
         url_links = get_url_from_topic(topic_url)
         url_trans = get_trans(url_links)
         speeches = []
@@ -86,13 +82,9 @@ if __name__ == '__main__':
             try:
                 speech = ted_talks_crawler(url)
             except:
-                print 'url open time out, skip ...'
+                print 'url opening time out, skip %s ...' % (url)
                 continue
             print len(speech)
-            if url.find('amy_webb_how_i_hacked_online_dating') <> -1:
-                print speech
-                print '-----'
-                print speech[15432:15436]
             speeches.append(speech)
         f = open(file_saved, 'a')
         for s in speeches:
